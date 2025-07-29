@@ -10,9 +10,14 @@ import java.time.format.DateTimeParseException;
 public class ValidadorEntrada {
 
     public static int leerEntero(Scanner scanner) {
+        int num;
         while (true) {
             try {
-                return scanner.nextInt();
+                num = scanner.nextInt();
+                if (num <= 0 ) {
+                    System.out.print("❌ Entrada inválida | Ingrese un número mayor a 0 → ");
+                    continue;
+                } else return num;
             } catch (InputMismatchException e) {
                 System.out.print("❌ Entrada inválida | Ingrese un número entero → ");
                 scanner.nextLine(); // limpiar buffer
@@ -21,9 +26,14 @@ public class ValidadorEntrada {
     }
 
     public static byte leerByte(Scanner scanner) {
+        byte num;
         while (true) {
             try {
-                return scanner.nextByte();
+                num = scanner.nextByte();
+                if (num <= 0 ) {
+                    System.out.print("❌ Entrada inválida | Ingrese un número mayor a 0 → ");
+                    continue;
+                } else return num;
             } catch (InputMismatchException e) {
                 System.out.print("❌ Entrada inválida | Ingrese un número entero → ");
                 scanner.nextLine(); // limpiar buffer
