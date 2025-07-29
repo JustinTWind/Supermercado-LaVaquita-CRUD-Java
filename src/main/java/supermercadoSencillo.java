@@ -358,9 +358,15 @@ public class supermercadoSencillo {
                         contador++;
                     }
 
-                    System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-                    System.out.print(ColoresConsola.TEXTO_AMARILLO + "\n🔢 Seleccione el número del producto a verificar (1-" +
-                            nombresProductos.size() + ") → ");
+
+                    if (nombresProductos.size() == 1) {
+                        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+                        System.out.print(ColoresConsola.TEXTO_AMARILLO + "\n🔢 Seleccione el número del producto a verificar (1)");
+                    } else {
+                        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+                        System.out.print(ColoresConsola.TEXTO_AMARILLO + "\n🔢 Seleccione el número del producto a verificar (1-" +
+                                nombresProductos.size() + ") → ");
+                    }
 
                     try {
                         int seleccion = ValidadorEntrada.leerEntero(scanner);
@@ -468,16 +474,16 @@ public class supermercadoSencillo {
 
                                 // Preguntar si desea eliminar automáticamente
                                 System.out.print(ColoresConsola.TEXTO_AMARILLO +
-                                        "\n🗑️ ¿Desea eliminar este producto vencido del inventario? (SI/NO) → ");
+                                        "\n🗑️ ¿Desea eliminar el Stock de este producto vencido del inventario? (SI/NO) → ");
                                 String respuestaEliminar = scanner.nextLine().trim();
 
                                 if (respuestaEliminar.equalsIgnoreCase("SI")) {
-                                    DiccionarioProductos.remove(nombreSeleccionado);
+                                    productoSeleccionado.put("cantidad", 0);
                                     System.out.println(ColoresConsola.TEXTO_VERDE +
-                                            "✅ Producto eliminado exitosamente del inventario");
+                                            "✅ Stock eliminado exitosamente del inventario");
                                 } else {
                                     System.out.println(ColoresConsola.TEXTO_AMARILLO +
-                                            "⚠️ Producto mantenido en inventario (RIESGO ALTO)");
+                                            "⚠️ El Stock no fue eliminado (RIESGO ALTO)");
                                 }
                             }
                         }
@@ -509,7 +515,7 @@ public class supermercadoSencillo {
                             System.out.println("🟡🟡🟡 AMARILLO: Requiere atención");
                         } else if (diasDiferencia >= 0) {
                             System.out.println("🟠🟠🟠 NARANJA: Acción inmediata requerida");
-                        } else {
+                        } else if (diasDiferencia <= -3) {
                             System.out.println("🔴🔴🔴 ROJO: Producto vencido - Alto riesgo");
                         }
 
