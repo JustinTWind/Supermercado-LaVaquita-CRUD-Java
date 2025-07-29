@@ -46,14 +46,22 @@ public class ValidadorEntrada {
         }
     }
 
-    public static boolean confirmar(Scanner scanner, String mensaje) {
-        String respuesta;
+    public static String ComprobarVacio(Scanner scanner) {
+        String texto;
         while (true) {
-            System.out.print(mensaje);
-            respuesta = scanner.next().trim().toUpperCase();
-            if (respuesta.equals("SI")) return true;
-            if (respuesta.equals("NO")) return false;
-            System.out.println("❌ Respuesta inválida. Escriba 'SI' o 'NO'.");
+            try {
+                texto = scanner.nextLine();
+
+                if (texto.isEmpty()) {
+                    System.out.print("\"❌ Entrada inválida | El Texto está vacío → \"");
+                    continue;
+                } else return texto;
+
+            } catch (InputMismatchException e) {
+                System.out.print("❌ Entrada inválida | Ingrese un número entero → ");
+                scanner.nextLine(); // limpiar buffer
+            }
         }
     }
+
 }

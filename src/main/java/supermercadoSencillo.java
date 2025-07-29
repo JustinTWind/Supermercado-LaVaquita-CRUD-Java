@@ -3,6 +3,8 @@ import java.util.*;
 import misUtilidades.*;
 import java.time.*;
 
+import static misUtilidades.ValidadorEntrada.ComprobarVacio;
+
 
 public class supermercadoSencillo {
 
@@ -138,7 +140,7 @@ public class supermercadoSencillo {
                         producto.put("ID", idAleatorio.toString());
 
                         System.out.print("🛍️ Nombre del producto: ");
-                        String nombreProducto = scanner.nextLine();
+                        String nombreProducto = ComprobarVacio(scanner);
 
                         System.out.print("💰 Precio: ");
                         producto.put("precio", ValidadorEntrada.leerEntero(scanner));
@@ -152,19 +154,19 @@ public class supermercadoSencillo {
                         producto.put("vencimiento", ValidadorEntrada.leerFecha(scanner));
 
                         System.out.print("📷 URL De primera foto del producto: ");
-                        producto.put("foto Uno", scanner.nextLine());
+                        producto.put("foto Uno", ComprobarVacio(scanner));
 
                         System.out.print("📷 URL De segunda foto del producto: ");
-                        producto.put("foto Dos", scanner.nextLine());
+                        producto.put("foto Dos", ComprobarVacio(scanner));
 
                         System.out.print("📎 Descripción del producto: ");
-                        producto.put("descripcion", scanner.nextLine());
+                        producto.put("descripcion", ComprobarVacio(scanner));
 
                         System.out.print("☢️ Categoría del producto: ");
-                        producto.put("categoría", scanner.nextLine());
+                        producto.put("categoría", ComprobarVacio(scanner));
 
                         System.out.print("🏭 Nombre del Provedor: ");
-                        producto.put("provedor", scanner.nextLine());
+                        producto.put("provedor", ComprobarVacio(scanner));
 
                         // Guardar en el mapa general
                         DiccionarioProductos.put(nombreProducto, producto);
